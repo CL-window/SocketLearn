@@ -7,6 +7,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.nio.ByteBuffer;
 import java.nio.channels.NotYetConnectedException;
 
 /**
@@ -17,6 +18,11 @@ public class WrapWebSocket extends WebSocketClient {
     public WrapWebSocket(String ip, int port) {
         // ws:// ip地址 : 端口号
         super(URI.create("ws://" + ip + ":" + port));
+    }
+
+    private SocketCallback mSocketCallback;
+    public void setCallback(SocketCallback callback) {
+        mSocketCallback = callback;
     }
 
     public boolean isConnected() {
@@ -34,7 +40,19 @@ public class WrapWebSocket extends WebSocketClient {
     @Override
     public void onMessage(String s) {
         msg = s;
+        if (mSocketCallback != null) {
+            mSocketCallback.onMessage(s);
+        }
         Log.i("slack", "onMessage: " + s);
+    }
+
+    @Override
+    public void onMessage(ByteBuffer bytes) {
+        super.onMessage(bytes);
+        if (mSocketCallback != null) {
+            mSocketCallback.onMessage(bytes);
+        }
+        Log.i("slack", "onMessage ByteBuffer");
     }
 
     @Override
@@ -51,6 +69,9 @@ public class WrapWebSocket extends WebSocketClient {
     @Override
     public void connect() {
         super.connect();
+        if (mSocketCallback != null) {
+            mSocketCallback.onConnect();
+        }
         Log.i("slack", "connect...");
     }
 

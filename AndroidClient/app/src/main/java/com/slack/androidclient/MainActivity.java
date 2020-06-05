@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.slack.androidclient.screen.ScreenPushClientActivity;
 import com.slack.androidclient.screen.ScreenRecordActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void screenPush(View view) {
         startActivity(new Intent(this, ScreenRecordActivity.class));
+    }
+
+    public void screenPushClient(View view) {
+        startActivity(new Intent(this, ScreenPushClientActivity.class));
     }
 }

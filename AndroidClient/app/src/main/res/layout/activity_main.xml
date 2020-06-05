@@ -28,4 +28,11 @@
         android:text="投屏"
         android:textAllCaps="false" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="screenPushClient"
+        android:text="投屏客户端"
+        android:textAllCaps="false" />
+
 </LinearLayout>

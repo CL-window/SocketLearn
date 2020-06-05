@@ -52,6 +52,7 @@ public class RecordService2 extends Service {
     private MediaProjection mMediaProjection;
     private ImageReader mImageReader; // 使用ImageReader，获取单帧数据
     private VirtualDisplay mVirtualDisplay;
+//    private WrapWebSocketServer server = new WrapWebSocketServer();
 
 
     @Nullable
@@ -87,6 +88,9 @@ public class RecordService2 extends Service {
 
     public void startRecord(Intent data, int width, int height, int dpi) {
         print("startRecord2..." + data.toString() + ", " + width + ", " + height + ", " + dpi);
+//        if (!server.isRunning()) {
+//            server.start();
+//        }
         MediaProjectionManager manager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
         if (manager != null) {
             mMediaProjection = manager.getMediaProjection(-1, data);
@@ -185,6 +189,7 @@ public class RecordService2 extends Service {
                         return;
                     }
 
+//                    server.send(byteBuffer);
 
                     int pixelStride = planes[0].getPixelStride();
                     int rowStride = planes[0].getRowStride();
@@ -192,7 +197,6 @@ public class RecordService2 extends Service {
 
                     Bitmap bitmap = Bitmap.createBitmap(width + rowPadding / pixelStride, height, Bitmap.Config.ARGB_8888);
                     bitmap.copyPixelsFromBuffer(byteBuffer);
-
 //                    saveToFile(bitmap);
 
                     if (callback != null) {

@@ -48,3 +48,8 @@
     <img src="img/floatview.png" width="100" height="200" />
 * RecordService3使用MediaCodec对录屏的数据进行编码，编码后的数据可以用于录屏推流，也可以用于保存视频，ScreenRecorder.java 就是直接保存为视频，ScreenRecordEncode.java 对录屏的每一帧进行编码，编码的回调是ScreenRecordCallback.java;
 * 对PC端展示不太熟悉，所以测试代码只能暂时止步于此了，但是通过Socket是可以传输数据的，只是PC端展示的问题
+
+#### 搞了个取巧的投屏
+* Andoird手机做服务器，截取屏幕
+* 另外一个手机连接服务器，接收投屏数据并展示
+* 可以实现这个效果，但是问题很大，接收端太卡，Socket传输好像有延时，服务端好像没有内存回收，容易“Waiting for a blocking GC Alloc”内存爆炸，感觉这套投屏方案整体凉凉

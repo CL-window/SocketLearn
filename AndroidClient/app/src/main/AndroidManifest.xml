@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.slack.androidclient">
-
+    <!-- 屏幕录制需要 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".screen.ScreenPushClientActivity"></activity>
         <activity android:name=".screen.ScreenRecordActivity" />
-
         <activity android:name=".ServerActivity" />
         <activity android:name=".ClientActivity" />
         <activity android:name=".MainActivity">
@@ -22,29 +22,26 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".screen.RecordService"
+        <service
+            android:name=".screen.RecordService"
             android:enabled="true"
             android:foregroundServiceType="mediaProjection" />
-
-        <service android:name=".screen.RecordService2"
+        <service
+            android:name=".screen.RecordService2"
             android:enabled="true"
             android:foregroundServiceType="mediaProjection" />
-
-        <service android:name=".screen.record.RecordService3"
+        <service
+            android:name=".screen.record.RecordService3"
             android:enabled="true"
             android:foregroundServiceType="mediaProjection" />
     </application>
-    <!-- 屏幕录制需要 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--  浮窗需要  -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 浮窗需要 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.REORDER_TASKS" />
-    <!--  前台service  -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!-- socket need -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" /> <!-- 前台service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- socket need -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>
