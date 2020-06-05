@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".screen.ScreenRecordActivity">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="client"
-        android:text="客户端"
-        android:textAllCaps="false" />
+        android:onClick="startRecordToFile"
+        android:text="录屏为文件"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="server"
-        android:text="服务器"
-        android:textAllCaps="false" />
+        android:onClick="startRecordShow"
+        android:text="录屏展示"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="screenPush"
-        android:text="投屏"
-        android:textAllCaps="false" />
+        android:onClick="startRecordPush"
+        android:text="开始投屏"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="stopRecord"
+        android:text="结束"/>
 </LinearLayout>

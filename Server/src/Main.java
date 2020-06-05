@@ -1,3 +1,4 @@
+import java.nio.ByteBuffer;
 import java.util.Map;
 
 public class Main {
@@ -81,5 +82,27 @@ public class Main {
 
 //        connectAndroidServerByUSB();
 
+        connectAndroidServerJrame();
     }
+
+    private static void connectAndroidServerJrame() {
+        Client client = new Client("192.168.3.208");
+        client.connect(new Client.Callback() {
+            @Override
+            public void onConnected() {
+                client.send("hello");
+            }
+
+            @Override
+            public void onMessage(ByteBuffer bytes) {
+                //
+            }
+
+            @Override
+            public void onMessage(String msg) {
+                //
+            }
+        });
+    }
+
 }

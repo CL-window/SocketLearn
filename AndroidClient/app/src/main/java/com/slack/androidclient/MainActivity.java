@@ -4,17 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.OutputStream;
-import java.net.Socket;
+import com.slack.androidclient.screen.ScreenRecordActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,5 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void server(View view) {
         startActivity(new Intent(this, ServerActivity.class));
+    }
+
+    public void screenPush(View view) {
+        startActivity(new Intent(this, ScreenRecordActivity.class));
     }
 }

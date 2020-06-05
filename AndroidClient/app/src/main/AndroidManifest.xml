@@ -8,8 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ServerActivity"></activity>
+        <activity android:name=".screen.ScreenRecordActivity" />
+
+        <activity android:name=".ServerActivity" />
         <activity android:name=".ClientActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,8 +21,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <service android:name=".screen.RecordService"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection" />
+
+        <service android:name=".screen.RecordService2"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection" />
+
+        <service android:name=".screen.record.RecordService3"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection" />
+    </application>
+    <!-- 屏幕录制需要 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--  浮窗需要  -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <!--  前台service  -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- socket need -->
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

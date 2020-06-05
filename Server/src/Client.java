@@ -2,6 +2,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.nio.ByteBuffer;
 
 public class Client extends WebSocketClient {
 
@@ -46,7 +47,20 @@ public class Client extends WebSocketClient {
     @Override
     public void onMessage(String s) {
         print("onMessage: " + s);
+        if (callback != null) {
+            callback.onMessage(s);
+        }
     }
+
+    @Override
+    public void onMessage(ByteBuffer bytes) {
+        super.onMessage(bytes);
+        print("onMessage: ByteBuffer" + bytes);
+        if (callback != null) {
+            callback.onMessage(bytes);
+        }
+    }
+
 
     @Override
     public void onClose(int i, String s, boolean b) {
@@ -65,5 +79,11 @@ public class Client extends WebSocketClient {
 
     public interface Callback {
         void onConnected();
+        default void onMessage(String msg) {
+            //
+        }
+        default void onMessage(ByteBuffer bytes) {
+            //
+        }
     }
 }
